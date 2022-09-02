@@ -1,6 +1,14 @@
 import csv
 import json
 
+#modifiers is a list 
+class Cata:
+    def __init__(self,base,modifier):
+
+
+
+
+
 csvfile = open('file.csv', 'r')
 jsonfile = open('file.json', 'w')
 
@@ -12,5 +20,5 @@ for row in reader:
 with open('file.json', 'r') as fs:
     line=fs.readlines()
     print(line)
-class Cata:
-    def __init__(self,base,modifier):
+    
+    
