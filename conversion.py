@@ -4,6 +4,8 @@ import json
 #modifiers is a list 
 class Cata:
     def __init__(self,base,modifier):
+        self.base=base
+        self.modifier=modifier
 
 
 
