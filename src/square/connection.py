@@ -1,4 +1,4 @@
-from enum import Enum
+from enum import Enum, Flag, auto
 from square.client import Client, CatalogApi
 
 class ConnectionEnvironment(Enum):
@@ -6,8 +6,17 @@ class ConnectionEnvironment(Enum):
     PRODUCTION = 'production'
 
 
-class CatalogObjectType(Enum):
-    
+class CatalogObjectType(Flag):
+    ITEM = auto()
+    ITEM_VARIATION = auto()
+    MODIFIER = auto()
+    MODIFIER_LIST = auto()
+    CATEGORY = auto()
+    DISCOUNT = auto()
+    TAX = auto()
+    IMAGE = auto()
+
+
 
 class SquareConnection:
     def __init__(self, access_token: str, environment: ConnectionEnvironment):
