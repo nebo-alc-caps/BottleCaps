@@ -1,4 +1,4 @@
-from enum import Enum, Flag, auto
+from enum import Enum, Flag
 from square.client import Client, CatalogApi
 
 class ConnectionEnvironment(Enum):
@@ -7,6 +7,7 @@ class ConnectionEnvironment(Enum):
 
 
 class CatalogObjectType(Flag):
+    NOTHING = 0
     ITEM = 1 << 0
     ITEM_VARIATION = 1 << 1
     MODIFIER = 1 << 2
@@ -32,14 +33,33 @@ class CatalogObjectType(Flag):
         v: (1 << k) for k, v in enumerate(__object_type_strings)
     }
 
-    def stringify(self):
+    def stringify_set(self) -> str:
         actives = []
         for i, v in enumerate(CatalogObjectType.__object_type_strings):
-            if self & (1 << i):
+            if bool(self & (1 << i)):
                 actives.append(v)
         return ", ".join(actives)
 
+    def stringify_one(self) -> str:
+        for i, v in enumerate(CatalogObjectType.__object_type_strings):
+            if self == (1 << i):
+                return v
+        raise ValueError("Expected exactly one object type.")
+    
+    def parse_set(s: str):
+        actives = s.split(",")
+        tot = CatalogObjectType.NOTHING
+        for sub in actives:
+            sub = sub.trim()
+            tot: CatalogObjectType = tot | CatalogObjectType.parse_one(sub)
+        return tot
 
+    def parse_one(s: str):
+        try:
+            v: CatalogObjectType = CatalogObjectType.__string_object_types[s]
+        except:
+            raise ValueError("Unrecognized catalog object type name.")
+        return v
 
 
 class SquareConnection:
@@ -55,6 +75,8 @@ class SquareConnection:
 
     def push_catalog(self, catalog):
         pass
+
+
     
 
 
