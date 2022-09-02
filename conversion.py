@@ -12,4 +12,5 @@ for row in reader:
 with open('file.json', 'r') as fs:
     line=fs.readlines()
     print(line)
-
+class Cata:
+    def __init__(self,base,modifier):
