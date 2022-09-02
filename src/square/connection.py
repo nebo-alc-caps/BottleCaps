@@ -5,6 +5,10 @@ class ConnectionEnvironment(Enum):
     SANDBOX = 'sandbox'
     PRODUCTION = 'production'
 
+
+class CatalogObjectType(Enum):
+    
+
 class SquareConnection:
     def __init__(self, access_token: str, environment: ConnectionEnvironment):
         self.__client = Client(access_token=access_token, environment=environment)
