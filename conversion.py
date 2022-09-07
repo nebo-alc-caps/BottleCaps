@@ -1,6 +1,10 @@
 import csv
 import json
 
+with open("")as fileName:
+    fls=fileName.read()
+    
+
 # things the classes need
 
 #    ITEM, ITEM_VARIATION, MODIFIER, MODIFIER_LIST, CATEGORY, DISCOUNT, TAX, IMAGE, QUANTITY 
