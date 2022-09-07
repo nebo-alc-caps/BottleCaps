@@ -72,7 +72,7 @@ class ResponsePages:
     def advance(self):
         response = self.__next(self.__cursor)
         if response.is_error():
-            response.errors.
+            response.errors
             raise RuntimeError("Square API failed with errors")
             
         
@@ -96,6 +96,10 @@ class SquareConnection:
         pass
 
 
+
+if __name__ == "__main__":
+    sq = SquareConnection("EAAAEPSHUwqyX4cuP-gETGVsfrbblpfaVnUc_VFfsZbe7ZHBnOhzXBcfKZqq_yx8", ConnectionEnvironment.SANDBOX)
+    sq.get_square_client()
     
 
 
