@@ -4,6 +4,8 @@ import json
 with open("")as fileName:
     fls=fileName.read()
     
+#syrup, puree, fruit,other, freeze is a list
+
 
 # things the classes need
 
