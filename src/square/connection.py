@@ -6,7 +6,10 @@ from square.client import Client, CatalogApi
 from square.http.api_response import ApiResponse
 
 
-def 
+def check_response(response: ApiResponse):
+    if not response.is_success():
+        raise RuntimeError(response)
+
 
 class ConnectionEnvironment(Enum):
     SANDBOX = 'sandbox'

@@ -1,4 +1,5 @@
 from enum import Flag
+from optparse import check_choice
 from src.square.connection import *
 
 
@@ -57,14 +58,11 @@ class CatalogObjectType(Flag):
             raise ValueError("Unrecognized catalog object type name.")
         return v
 
-
-
 class CatalogObject:
     def __init__(self, obj_type: CatalogObjectType, id: str, version: int):
         self.type = obj_type.stringify_one()
         self.id = obj_type
         self.version = version
-
 
 class CatalogObjectItem(CatalogObject):
     def __init__(self, id: str, version: int):
@@ -90,14 +88,21 @@ class CatalogBatchUpsertRequest(SquareRequest):
         super().__init__()
         self.batches = batches
 
-
-
 class SquareCatalog:
     def __init__(self, s: SquareConnection):
         self.__catalog: CatalogApi = s.get_square_client().catalog
+        self.objects: dict[str, CatalogObject]
 
     def batch_upsert(self, request: CatalogBatchUpsertRequest):
         response = self.__catalog.batch_upsert_catalog_objects(request)
-        if not response.is_success():
-            raise RuntimeError("")
+        check_response(response)
+        body = response.body
+        id_map = body.id_mappings
+        for el in id_map:
+            o = self.objects[el.client_object_id]
+            o.id = el.object_id
+            
+
+    
+    
 
