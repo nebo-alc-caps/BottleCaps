@@ -1,5 +1,5 @@
 from enum import Flag
-from socket import CAN_RAW
+from src.square.connection import *
 
 
 class CatalogObjectType(Flag):
@@ -75,3 +75,29 @@ class CatalogObjectItem(CatalogObject):
 
     def get_id(self):
         return self.id
+
+MAX_BATCH_SIZE = 1000
+
+class CatalogObjectBatch:
+    def __init__(self, objects: list[CatalogObject]):
+        if len(objects) > MAX_BATCH_SIZE:
+            raise ValueError("Batch size exceeded the maximum batch size")
+        self.objects = objects
+
+
+class CatalogBatchUpsertRequest(SquareRequest):
+    def __init__(self, batches: list[CatalogObjectBatch]):
+        super().__init__()
+        self.batches = batches
+
+
+
+class SquareCatalog:
+    def __init__(self, s: SquareConnection):
+        self.__catalog: CatalogApi = s.get_square_client().catalog
+
+    def batch_upsert(self, request: CatalogBatchUpsertRequest):
+        response = self.__catalog.batch_upsert_catalog_objects(request)
+        if not response.is_success():
+            raise RuntimeError("")
+
