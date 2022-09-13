@@ -79,7 +79,7 @@ class CatalogObjectItem(CatalogObject):
     def __init__(self, id: str, version: int, name: str, variations: list[CatalogObjectVariation]):
         super().__init__(CatalogObjectType.ITEM, id, version)
         self.item_data = {
-            
+            variations
         }
 
 MAX_BATCH_SIZE = 1000
@@ -101,6 +101,12 @@ class SquareCatalog:
         self.__catalog: CatalogApi = s.get_square_client().catalog
         self.objects: dict[str, CatalogObject]
 
+    def register(self, obj: CatalogObject):
+        if not obj.id in self.objects:
+            self.objects[obj.id] = obj
+        else:
+            raise ValueError("Object id already present.")
+
     def batch_upsert(self, request: CatalogBatchUpsertRequest):
         response = self.__catalog.batch_upsert_catalog_objects(request)
         check_response(response)
@@ -109,6 +115,7 @@ class SquareCatalog:
         for el in id_map:
             o = self.objects[el.client_object_id]
             o.id = el.object_id
+            self.object[el]
     
 
             
