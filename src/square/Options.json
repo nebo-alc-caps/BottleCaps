@@ -1,0 +1,72 @@
+{
+    "Sizes": {
+        "1": "16",
+        "2": "24",
+        "3": "32",
+        "4": "44"
+    },
+    "Bases": {
+        "1": "Coke",
+        "2": "Coke Zero",
+        "3": "Diet Coke",
+        "4": "Diet Pepsi",
+        "5": "Dr. Pepper",
+        "6": "Lemonade",
+        "7": "Mountain Dew",
+        "8": "Pepsi",
+        "9": "Rootbeer",
+        "10": "Sparkling Water",
+        "11": "Sprite"
+    },
+    "Syrups": {
+        "1": "Blackberry",
+        "2": "Blood Orange",
+        "3": "Blue Curacao",
+        "4": "Butterscotch",
+        "5": "Cherry",
+        "6": "Coconut",
+        "7": "Cranberry",
+        "8": "Grapefruit",
+        "9": "Green Apple",
+        "10": "Grenadine",
+        "11": "Lemon",
+        "12": "Mango",
+        "13": "Passionfruit",
+        "14": "Peach",
+        "15": "Pineapple",
+        "16": "Pomegranate",
+        "17": "Raspberry",
+        "18": "RedRaspberry",
+        "19": "Strawberry",
+        "20": "Tangerine",
+        "21": "Tigers Blood",
+        "22": "Vanilla",
+        "23": "Sour"
+    },
+    "Creams": {
+        "1": "Coconut",
+        "2": "Vanilla"
+    },
+    "Purees": {
+        "1": "Mango",
+        "2": "Peach",
+        "3": "Raspberry",
+        "4": "Strawberry"
+    },
+    "Fruits": {
+        "1": "Cherry",
+        "2": "Lemon",
+        "3": "Lime"
+    },
+    "Others": {
+        "1": "Peep",
+        "2": "Rainbow",
+        "3": "Shark",
+        "4": "Toasted Marshmallow",
+        "5": "Whipped Cream"
+    },
+    "Freeze": [
+        true,
+        false
+    ]
+}
