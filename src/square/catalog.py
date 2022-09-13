@@ -64,15 +64,23 @@ class CatalogObject:
         self.id = obj_type
         self.version = version
 
-class CatalogObjectItem(CatalogObject):
-    def __init__(self, id: str, version: int):
+    def get_id(self):
+        return self.id
+
+
+class CatalogObjectVariation(CatalogObject):
+    def __init__(self, id: str, version: int, name: str):
         super().__init__(CatalogObjectType.ITEM, id, version)
         self.item_data = {
             
         }
 
-    def get_id(self):
-        return self.id
+class CatalogObjectItem(CatalogObject):
+    def __init__(self, id: str, version: int, name: str, variations: list[CatalogObjectVariation]):
+        super().__init__(CatalogObjectType.ITEM, id, version)
+        self.item_data = {
+            
+        }
 
 MAX_BATCH_SIZE = 1000
 
@@ -101,6 +109,8 @@ class SquareCatalog:
         for el in id_map:
             o = self.objects[el.client_object_id]
             o.id = el.object_id
+    
+
             
 
     
