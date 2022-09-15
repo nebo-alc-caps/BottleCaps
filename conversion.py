@@ -1,5 +1,11 @@
 import csv
 import json
+# eight catagories in the classes
+with open("file.json","r")as fileName:
+    fls=fileName.read()
+    
+#syrup, puree, fruit,other, freeze is a list
+
 
 # things the classes need
 
@@ -13,9 +19,7 @@ class Cata:
         self.modifier=modifier
 
 
-
-
-
+        #converter
 csvfile = open('file.csv', 'r')
 jsonfile = open('file.json', 'w')
 
