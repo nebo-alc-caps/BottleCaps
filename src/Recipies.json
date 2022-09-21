@@ -1,0 +1,618 @@
+{
+"1":{
+    "name": "Hasselhoff",
+    "base": [
+        [
+            "Coke",
+            "Diet Coke",
+            "Coke Zero",
+            "Pepsi",
+            "Diet Pepsi"
+        ]
+    ],
+    "syrup": [
+        "Blackberry"
+    ],
+    "cream": [
+        "Vanilla"
+    ],
+    "puree": [],
+    "fruit": [
+        "Lime"
+    ],
+    "topper": [],
+    "freeze": false
+},
+"2":{
+    "name": "Rock Crawler",
+    "base": [
+        [
+            "Coke",
+            "Diet Coke",
+            "Coke Zero",
+            "Pepsi",
+            "Diet Pepsi"
+        ]
+    ],
+    "syrup": [
+        "Coconut"
+    ],
+    "cream": [
+        "Vanilla"
+    ],
+    "puree": [
+        "Raspberry"
+    ],
+    "fruit": [],
+    "topper": [],
+    "freeze": false
+},
+"3":{
+    "name": "Easy Rider",
+    "base": [
+        [
+            "Coke",
+            "Diet Coke",
+            "Coke Zero",
+            "Pepsi",
+            "Diet Pepsi"
+        ]
+    ],
+    "syrup": [
+        "Blackberry",
+        "Coconut"
+    ],
+    "cream": [
+        "Vanilla"
+    ],
+    "puree": [],
+    "fruit": [],
+    "topper": [],
+    "freeze": false
+},
+"4":{
+    "name": "Red Corvette (Mrs. Ewell)",
+    "base": [
+        [
+            "Coke",
+            "Diet Coke",
+            "Coke Zero",
+            "Pepsi",
+            "Diet Pepsi"
+        ]
+    ],
+    "syrup": [
+        "Grenadine"
+    ],
+    "cream": [],
+    "puree": [],
+    "fruit": [
+        "Cherry",
+        "Lime"
+    ],
+    "topper": [],
+    "freeze": false
+},
+"5":{
+    "name": "Hot Rod",
+    "base": [
+        [
+            "Coke",
+            "Diet Coke",
+            "Coke Zero",
+            "Pepsi",
+            "Diet Pepsi"
+        ]
+    ],
+    "syrup": [
+        "Coconut"
+    ],
+    "cream": [
+        "Vanilla"
+    ],
+    "puree": [],
+    "fruit": [],
+    "topper": [],
+    "freeze": false
+},
+"6":{
+    "name": "Lowrider (Jocelyn H.)",
+    "base": [
+        "Sprite"
+    ],
+    "syrup": [
+        "Grapefruit"
+    ],
+    "cream": [],
+    "puree": [
+        "Peach"
+    ],
+    "fruit": [
+        "Lime"
+    ],
+    "topper": [],
+    "freeze": false
+},
+"7":{
+    "name": "The Harley",
+    "base": [
+        "Sprite"
+    ],
+    "syrup": [
+        "Blood Orange",
+        "Grenadine"
+    ],
+    "cream": [],
+    "puree": [],
+    "fruit": [
+        "Lime"
+    ],
+    "topper": [],
+    "freeze": false
+},
+"8":{
+    "name": "Copper Mustang (Ben Ford)",
+    "base": [
+        "Sprite"
+    ],
+    "syrup": [
+        "Raspberry",
+        "Blue Curacao"
+    ],
+    "cream": [],
+    "puree": [
+        "Peach"
+    ],
+    "fruit": [],
+    "topper": [],
+    "freeze": false
+},
+"9":{
+    "name": "Grand Prix (Bart Peery)",
+    "base": [
+        "Sprite"
+    ],
+    "syrup": [
+        "Passionfruit",
+        "Coconut",
+        "Blue Curacao"
+    ],
+    "cream": [],
+    "puree": [],
+    "fruit": [
+        "Cherry"
+    ],
+    "topper": [
+        "Whipped Cream"
+    ],
+    "freeze": false
+},
+"10":{
+    "name": "Blinker Fluid",
+    "base": [
+        "Sprite"
+    ],
+    "syrup": [
+        "Tigers Blood"
+    ],
+    "cream": [
+        "Coconut"
+    ],
+    "puree": [],
+    "fruit": [],
+    "topper": [],
+    "freeze": false
+},
+"11":{
+    "name": "Pink Cadillac (Chris V.)",
+    "base": [
+        "Sprite"
+    ],
+    "syrup": [
+        "Cranberry",
+        "Raspberry"
+    ],
+    "cream": [],
+    "puree": [],
+    "fruit": [
+        "Lime"
+    ],
+    "topper": [],
+    "freeze": false
+},
+"12":{
+    "name": "Road Less Traveled (KBC)",
+    "base": [
+        "Rootbeer"
+    ],
+    "syrup": [
+        "Butterscotch",
+        "Vanilla"
+    ],
+    "cream": [
+        "Vanilla"
+    ],
+    "puree": [],
+    "fruit": [],
+    "topper": [],
+    "freeze": false
+},
+"13":{
+    "name": "Highboy",
+    "base": [
+        "Rootbeer"
+    ],
+    "syrup": [
+        "Vanilla"
+    ],
+    "cream": [
+        "Vanilla"
+    ],
+    "puree": [],
+    "fruit": [
+        "Cherry"
+    ],
+    "topper": [
+        "Whipped Cream"
+    ],
+    "freeze": false
+},
+"14":{
+    "name": "Toasted Whip",
+    "base": [
+        "Rootbeer"
+    ],
+    "syrup": [],
+    "cream": [
+        "Vanilla"
+    ],
+    "puree": [],
+    "fruit": [
+        "Cherry"
+    ],
+    "topper": [
+        "Toasted Marshmallow",
+        "Whipped Cream"
+    ],
+    "freeze": false
+},
+"15":{
+    "name": "Torqued Up",
+    "base": [
+        "Mountain Dew"
+    ],
+    "syrup": [
+        "Blood Orange"
+    ],
+    "cream": [],
+    "puree": [
+        "Mango"
+    ],
+    "fruit": [],
+    "topper": [],
+    "freeze": false
+},
+"16":{
+    "name": "Backseat Driver",
+    "base": [
+        "Mountain Dew"
+    ],
+    "syrup": [
+        "Raspberry",
+        "Coconut"
+    ],
+    "cream": [],
+    "puree": [],
+    "fruit": [
+        "Lime"
+    ],
+    "topper": [],
+    "freeze": false
+},
+"17":{
+    "name": "Diesel Fuel",
+    "base": [
+        "Mountain Dew"
+    ],
+    "syrup": [
+        "Tangerine",
+        "Sour",
+        "RedRaspberry"
+    ],
+    "cream": [],
+    "puree": [],
+    "fruit": [],
+    "topper": [],
+    "freeze": false
+},
+"18":{
+    "name": "Big Rig (Alan Ashton)",
+    "base": [
+        "Mountain Dew"
+    ],
+    "syrup": [
+        "Peach",
+        "Strawberry"
+    ],
+    "cream": [],
+    "puree": [],
+    "fruit": [
+        "Lime"
+    ],
+    "topper": [],
+    "freeze": false
+},
+"19":{
+    "name": "Jump-Start",
+    "base": [
+        "Mountain Dew"
+    ],
+    "syrup": [
+        "Coconut",
+        "Peach"
+    ],
+    "cream": [
+        "Vanilla"
+    ],
+    "puree": [],
+    "fruit": [],
+    "topper": [],
+    "freeze": false
+},
+"20":{
+    "name": "Barracuda",
+    "base": [
+        "Mountain Dew"
+    ],
+    "syrup": [
+        "Peach",
+        "Pomegranate",
+        "Pineapple"
+    ],
+    "cream": [],
+    "puree": [],
+    "fruit": [],
+    "topper": [],
+    "freeze": false
+},
+"21":{
+    "name": "Charger",
+    "base": [
+        "Dr. Pepper"
+    ],
+    "syrup": [
+        "Blackberry"
+    ],
+    "cream": [
+        "Vanilla"
+    ],
+    "puree": [],
+    "fruit": [],
+    "topper": [],
+    "freeze": false
+},
+"22":{
+    "name": "Hairy Biker",
+    "base": [
+        "Dr. Pepper"
+    ],
+    "syrup": [
+        "Coconut",
+        "Cherry"
+    ],
+    "cream": [],
+    "puree": [
+        "Peach"
+    ],
+    "fruit": [],
+    "topper": [
+        "Whipped Cream"
+    ],
+    "freeze": false
+},
+"23":{
+    "name": "Nitro Boost",
+    "base": [
+        "Dr. Pepper"
+    ],
+    "syrup": [
+        "Strawberry"
+    ],
+    "cream": [],
+    "puree": [
+        "Mango"
+    ],
+    "fruit": [],
+    "topper": [],
+    "freeze": false
+},
+"24":{
+    "name": "Formula 1",
+    "base": [
+        "Dr. Pepper"
+    ],
+    "syrup": [
+        "Cherry",
+        "Vanilla"
+    ],
+    "cream": [],
+    "puree": [],
+    "fruit": [
+        "Lime"
+    ],
+    "topper": [],
+    "freeze": false
+},
+"25":{
+    "name": "The Get Away (JWC)",
+    "base": [
+        "Dr. Pepper"
+    ],
+    "syrup": [
+        "Coconut"
+    ],
+    "cream": [],
+    "puree": [
+        "Raspberry"
+    ],
+    "fruit": [
+        "Lime"
+    ],
+    "topper": [],
+    "freeze": false
+},
+"26":{
+    "name": "Bonneville Speedway",
+    "base": [
+        "Sparkling Water"
+    ],
+    "syrup": [
+        "Blue Curacao",
+        "Coconut",
+        "Vanilla"
+    ],
+    "cream": [],
+    "puree": [],
+    "fruit": [],
+    "topper": [],
+    "freeze": false
+},
+"27":{
+    "name": "Salt Flats Splash",
+    "base": [
+        "Sparkling Water"
+    ],
+    "syrup": [
+        "Lemon",
+        "Raspberry"
+    ],
+    "cream": [],
+    "puree": [],
+    "fruit": [
+        "Lemon"
+    ],
+    "topper": [],
+    "freeze": false
+},
+"28":{
+    "name": "Top Gear",
+    "base": [
+        "Sparkling Water"
+    ],
+    "syrup": [
+        "Coconut"
+    ],
+    "cream": [],
+    "puree": [
+        "Raspberry"
+    ],
+    "fruit": [
+        "Lime"
+    ],
+    "topper": [],
+    "freeze": false
+},
+"29":{
+    "name": "Ghost Rider",
+    "base": [
+        "Lemonade"
+    ],
+    "syrup": [
+        "Blackberry"
+    ],
+    "cream": [],
+    "puree": [
+        "Mango"
+    ],
+    "fruit": [],
+    "topper": [],
+    "freeze": false
+},
+"30":{
+    "name": "Green Hurricane",
+    "base": [
+        "Lemonade"
+    ],
+    "syrup": [
+        "Coconut",
+        "Green Apple",
+        "Raspberry"
+    ],
+    "cream": [],
+    "puree": [],
+    "fruit": [],
+    "topper": [],
+    "freeze": false
+},
+"31":{
+    "name": "The Deville",
+    "base": [
+        "Lemonade"
+    ],
+    "syrup": [
+        "Pineapple",
+        "Coconut"
+    ],
+    "cream": [
+        "Vanilla"
+    ],
+    "puree": [],
+    "fruit": [],
+    "topper": [],
+    "freeze": false
+},
+"32":{
+    "name": "Road Shark",
+    "base": [
+        "Sprite",
+        "Lemonade"
+    ],
+    "syrup": [
+        "Blue Curacao",
+        "Coconut"
+    ],
+    "cream": [],
+    "puree": [],
+    "fruit": [],
+    "topper": [
+        "Shark"
+    ],
+    "freeze": false
+},
+"33":{
+    "name": "T-Bird",
+    "base": [
+        "Sprite",
+        "Lemonade"
+    ],
+    "syrup": [
+        "Raspberry",
+        "Mango"
+    ],
+    "cream": [],
+    "puree": [],
+    "fruit": [],
+    "topper": [
+        "Peep"
+    ],
+    "freeze": false
+},
+"34":{
+    "name": "Rainbow Road",
+    "base": [
+        "Sprite"
+    ],
+    "syrup": [],
+    "cream": [
+        "Vanilla"
+    ],
+    "puree": [
+        "Strawberry"
+    ],
+    "fruit": [],
+    "topper": [
+        "Rainbow"
+    ],
+    "freeze": false
+}
+}
