@@ -1,7 +1,6 @@
 from enum import Flag
 from optparse import check_choice
-from src.square.connection import *
-
+from square_connection import *
 
 class CatalogObjectType(Flag):
     NOTHING = 0
@@ -69,14 +68,14 @@ class CatalogObject:
 
 
 class CatalogObjectVariation(CatalogObject):
-    def __init__(self, id: str, version: int, name: str):
+    def __init__(self, id: str, name: str, version: int = 0):
         super().__init__(CatalogObjectType.ITEM, id, version)
         self.item_data = {
             
         }
 
 class CatalogObjectItem(CatalogObject):
-    def __init__(self, id: str, version: int, name: str, variations: list[CatalogObjectVariation]):
+    def __init__(self, id: str, name: str, variations: list[CatalogObjectVariation], version: int = 0):
         super().__init__(CatalogObjectType.ITEM, id, version)
         self.item_data = {
             variations
@@ -99,9 +98,9 @@ class CatalogBatchUpsertRequest(SquareRequest):
 class SquareCatalog:
     def __init__(self, s: SquareConnection):
         self.__catalog: CatalogApi = s.get_square_client().catalog
-        self.objects: dict[str, CatalogObject]
+        self.new_objects: dict[str, CatalogObject]
 
-    def register(self, obj: CatalogObject):
+    def register_new(self, obj: CatalogObject):
         if not obj.id in self.objects:
             self.objects[obj.id] = obj
         else:
@@ -113,13 +112,7 @@ class SquareCatalog:
         body = response.body
         id_map = body.id_mappings
         for el in id_map:
-            o = self.objects[el.client_object_id]
+            our_id = el.client_object_id
+            o = self.new_objects[our_id]
             o.id = el.object_id
-            self.object[el]
-    
-
-            
-
-    
-    
-
+            del self.new_objects[our_id]

@@ -30,8 +30,9 @@ class ConnectionEnvironment(Enum):
 class SquareRequest:
     def __init__(self):
         self.idempotency_key = uuid.uuid4()
-    
 
+
+DEFAULT_SANDBOX_KEY = "EAAAEPSHUwqyX4cuP-gETGVsfrbblpfaVnUc_VFfsZbe7ZHBnOhzXBcfKZqq_yx8"
 
 class SquareConnection:
     def __init__(self, access_token: str, environment: ConnectionEnvironment):
@@ -39,13 +40,9 @@ class SquareConnection:
 
     def get_square_client(self):
         return self.__client
-    
 
-
-
-if __name__ == "__main__":
-    sq = SquareConnection("EAAAEPSHUwqyX4cuP-gETGVsfrbblpfaVnUc_VFfsZbe7ZHBnOhzXBcfKZqq_yx8", ConnectionEnvironment.SANDBOX)
-    sq.get_square_client()
+    def get_default_sandbox():
+        return SquareConnection(DEFAULT_SANDBOX_KEY, ConnectionEnvironment.SANDBOX)
     
 
 
