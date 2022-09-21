@@ -1,6 +1,24 @@
 from enum import Flag
 from optparse import check_choice
+from types import NoneType
 from square_connection import *
+
+
+
+catalog_object_type_strings: list[str] = [
+    "ITEM", 
+    "ITEM_VARIATION", 
+    "MODIFIER", 
+    "MODIFIER_LIST", 
+    "CATEGORY",
+    "DISCOUNT",
+    "TAX",
+    "IMAGE"
+]
+
+string_catalog_object_types = {
+    v: (1 << k) for k, v in enumerate(catalog_object_type_strings)
+}
 
 class CatalogObjectType(Flag):
     NOTHING = 0
@@ -12,33 +30,18 @@ class CatalogObjectType(Flag):
     DISCOUNT = 1 << 5
     TAX = 1 << 6
     IMAGE = 1 << 7
-    ALL = (1 << 8) - 1
-
-    __object_type_strings = [
-        "ITEM", 
-        "ITEM_VARIATION", 
-        "MODIFIER", 
-        "MODIFIER_LIST", 
-        "CATEGORY",
-        "DISCOUNT",
-        "TAX",
-        "IMAGE"
-    ]
-
-    __string_object_types = {
-        v: (1 << k) for k, v in enumerate(__object_type_strings)
-    }
+    ALL = (1 << 8) - 1    
 
     def stringify_set(self) -> str:
         actives = []
-        for i, v in enumerate(CatalogObjectType.__object_type_strings):
-            if bool(self & (1 << i)):
+        for i, v in enumerate(catalog_object_type_strings):
+            if bool(self & CatalogObjectType(1 << i)):
                 actives.append(v)
         return ", ".join(actives)
 
     def stringify_one(self) -> str:
-        for i, v in enumerate(CatalogObjectType.__object_type_strings):
-            if self == (1 << i):
+        for i, v in enumerate(catalog_object_type_strings):
+            if self == CatalogObjectType(1 << i):
                 return v
         raise ValueError("Expected exactly one object type.")
     
@@ -52,7 +55,7 @@ class CatalogObjectType(Flag):
 
     def parse_one(s: str):
         try:
-            v: CatalogObjectType = CatalogObjectType.__string_object_types[s]
+            v: CatalogObjectType = string_catalog_object_types[s]
         except:
             raise ValueError("Unrecognized catalog object type name.")
         return v
@@ -60,25 +63,51 @@ class CatalogObjectType(Flag):
 class CatalogObject:
     def __init__(self, obj_type: CatalogObjectType, id: str, version: int):
         self.type = obj_type.stringify_one()
-        self.id = obj_type
+        self.id = id
         self.version = version
 
     def get_id(self):
         return self.id
 
+class VariationPricingType(Enum):
+    FIXED = "FIXED_PRICING"
+    VARIABLE = "VARIABLE_PRICING"
+
+class Money(Enum):
+
+class VariationPrice:
+    def __init__(self, price: int | None, currency = "USD"):
+        if price == None:
+            self.vdata = {
+                "pricing_type": 
+                {
+
+                }
+            }
+        else:
+            self.vdata = {
+
+            }
+    
+    def get_variation_data(self):
+        return {}
+
+
 
 class CatalogObjectVariation(CatalogObject):
-    def __init__(self, id: str, name: str, version: int = 0):
-        super().__init__(CatalogObjectType.ITEM, id, version)
-        self.item_data = {
-            
+    def __init__(self, id: str, name: str, price: VariationPrice, version: int = 0):
+        super().__init__(CatalogObjectType.ITEM_VARIATION, id, version)
+        self.item_variation_data = {
+            "name": name,
+            "pricing_type": pricing_type.value
         }
 
 class CatalogObjectItem(CatalogObject):
     def __init__(self, id: str, name: str, variations: list[CatalogObjectVariation], version: int = 0):
         super().__init__(CatalogObjectType.ITEM, id, version)
         self.item_data = {
-            variations
+            "name": name,
+            "variations": variations
         }
 
 MAX_BATCH_SIZE = 1000

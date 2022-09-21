@@ -29,7 +29,7 @@ class ConnectionEnvironment(Enum):
         
 class SquareRequest:
     def __init__(self):
-        self.idempotency_key = uuid.uuid4()
+        self.idempotency_key = str(uuid.uuid4())
 
 
 DEFAULT_SANDBOX_KEY = "EAAAEPSHUwqyX4cuP-gETGVsfrbblpfaVnUc_VFfsZbe7ZHBnOhzXBcfKZqq_yx8"
@@ -42,7 +42,7 @@ class SquareConnection:
         return self.__client
 
     def get_default_sandbox():
-        return SquareConnection(DEFAULT_SANDBOX_KEY, ConnectionEnvironment.SANDBOX)
+        return SquareConnection(DEFAULT_SANDBOX_KEY, ConnectionEnvironment.SANDBOX.value)
     
 
 
