@@ -1,6 +1,4 @@
 from enum import Flag
-from optparse import check_choice
-from types import NoneType
 from square_connection import *
 
 
@@ -73,24 +71,25 @@ class VariationPricingType(Enum):
     FIXED = "FIXED_PRICING"
     VARIABLE = "VARIABLE_PRICING"
 
-class Money(Enum):
+class FixedPrice:
+    def __init__(self, amount: int, currency = "USD"):
+        self.amount = amount
+        self.currency = currency
 
 class VariationPrice:
-    def __init__(self, price: int | None, currency = "USD"):
+    def __init__(self, price: FixedPrice | None):
         if price == None:
             self.vdata = {
-                "pricing_type": 
-                {
-
-                }
+                "pricing_type": VariationPricingType.VARIABLE.value
             }
         else:
             self.vdata = {
-
+                "pricing_type": VariationPricingType.FIXED.value,
+                "price_money": price
             }
     
     def get_variation_data(self):
-        return {}
+        return self.vdata
 
 
 
@@ -99,7 +98,7 @@ class CatalogObjectVariation(CatalogObject):
         super().__init__(CatalogObjectType.ITEM_VARIATION, id, version)
         self.item_variation_data = {
             "name": name,
-            "pricing_type": pricing_type.value
+            **price.get_variation_data()
         }
 
 class CatalogObjectItem(CatalogObject):
@@ -127,11 +126,11 @@ class CatalogBatchUpsertRequest(SquareRequest):
 class SquareCatalog:
     def __init__(self, s: SquareConnection):
         self.__catalog: CatalogApi = s.get_square_client().catalog
-        self.new_objects: dict[str, CatalogObject]
+        self.new_objects: dict[str, CatalogObject] = {}
 
     def register_new(self, obj: CatalogObject):
-        if not obj.id in self.objects:
-            self.objects[obj.id] = obj
+        if not obj.id in self.new_objects:
+            self.new_objects[obj.id] = obj
         else:
             raise ValueError("Object id already present.")
 
@@ -139,9 +138,9 @@ class SquareCatalog:
         response = self.__catalog.batch_upsert_catalog_objects(request)
         check_response(response)
         body = response.body
-        id_map = body.id_mappings
+        id_map = body["id_mappings"]
         for el in id_map:
-            our_id = el.client_object_id
+            our_id = el["client_object_id"]
             o = self.new_objects[our_id]
-            o.id = el.object_id
+            o.id = el["object_id"]
             del self.new_objects[our_id]
