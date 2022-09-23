@@ -1,7 +1,22 @@
 from enum import Flag
-from optparse import check_choice
-from src.square.connection import *
+from square_connection import *
 
+
+
+catalog_object_type_strings: list[str] = [
+    "ITEM", 
+    "ITEM_VARIATION", 
+    "MODIFIER", 
+    "MODIFIER_LIST", 
+    "CATEGORY",
+    "DISCOUNT",
+    "TAX",
+    "IMAGE"
+]
+
+string_catalog_object_types = {
+    v: (1 << k) for k, v in enumerate(catalog_object_type_strings)
+}
 
 class CatalogObjectType(Flag):
     NOTHING = 0
@@ -13,33 +28,18 @@ class CatalogObjectType(Flag):
     DISCOUNT = 1 << 5
     TAX = 1 << 6
     IMAGE = 1 << 7
-    ALL = (1 << 8) - 1
-
-    __object_type_strings = [
-        "ITEM", 
-        "ITEM_VARIATION", 
-        "MODIFIER", 
-        "MODIFIER_LIST", 
-        "CATEGORY",
-        "DISCOUNT",
-        "TAX",
-        "IMAGE"
-    ]
-
-    __string_object_types = {
-        v: (1 << k) for k, v in enumerate(__object_type_strings)
-    }
+    ALL = (1 << 8) - 1    
 
     def stringify_set(self) -> str:
         actives = []
-        for i, v in enumerate(CatalogObjectType.__object_type_strings):
-            if bool(self & (1 << i)):
+        for i, v in enumerate(catalog_object_type_strings):
+            if bool(self & CatalogObjectType(1 << i)):
                 actives.append(v)
         return ", ".join(actives)
 
     def stringify_one(self) -> str:
-        for i, v in enumerate(CatalogObjectType.__object_type_strings):
-            if self == (1 << i):
+        for i, v in enumerate(catalog_object_type_strings):
+            if self == CatalogObjectType(1 << i):
                 return v
         raise ValueError("Expected exactly one object type.")
     
@@ -53,7 +53,7 @@ class CatalogObjectType(Flag):
 
     def parse_one(s: str):
         try:
-            v: CatalogObjectType = CatalogObjectType.__string_object_types[s]
+            v: CatalogObjectType = string_catalog_object_types[s]
         except:
             raise ValueError("Unrecognized catalog object type name.")
         return v
@@ -61,25 +61,52 @@ class CatalogObjectType(Flag):
 class CatalogObject:
     def __init__(self, obj_type: CatalogObjectType, id: str, version: int):
         self.type = obj_type.stringify_one()
-        self.id = obj_type
+        self.id = id
         self.version = version
 
     def get_id(self):
         return self.id
 
+class VariationPricingType(Enum):
+    FIXED = "FIXED_PRICING"
+    VARIABLE = "VARIABLE_PRICING"
+
+class FixedPrice:
+    def __init__(self, amount: int, currency = "USD"):
+        self.amount = amount
+        self.currency = currency
+
+class VariationPrice:
+    def __init__(self, price: FixedPrice | None):
+        if price == None:
+            self.vdata = {
+                "pricing_type": VariationPricingType.VARIABLE.value
+            }
+        else:
+            self.vdata = {
+                "pricing_type": VariationPricingType.FIXED.value,
+                "price_money": price
+            }
+    
+    def get_variation_data(self):
+        return self.vdata
+
+
 
 class CatalogObjectVariation(CatalogObject):
-    def __init__(self, id: str, version: int, name: str):
-        super().__init__(CatalogObjectType.ITEM, id, version)
-        self.item_data = {
-            
+    def __init__(self, id: str, name: str, price: VariationPrice, version: int = 0):
+        super().__init__(CatalogObjectType.ITEM_VARIATION, id, version)
+        self.item_variation_data = {
+            "name": name,
+            **price.get_variation_data()
         }
 
 class CatalogObjectItem(CatalogObject):
-    def __init__(self, id: str, version: int, name: str, variations: list[CatalogObjectVariation]):
+    def __init__(self, id: str, name: str, variations: list[CatalogObjectVariation], version: int = 0):
         super().__init__(CatalogObjectType.ITEM, id, version)
         self.item_data = {
-            variations
+            "name": name,
+            "variations": variations
         }
 
 MAX_BATCH_SIZE = 1000
@@ -99,11 +126,11 @@ class CatalogBatchUpsertRequest(SquareRequest):
 class SquareCatalog:
     def __init__(self, s: SquareConnection):
         self.__catalog: CatalogApi = s.get_square_client().catalog
-        self.objects: dict[str, CatalogObject]
+        self.new_objects: dict[str, CatalogObject] = {}
 
-    def register(self, obj: CatalogObject):
-        if not obj.id in self.objects:
-            self.objects[obj.id] = obj
+    def register_new(self, obj: CatalogObject):
+        if not obj.id in self.new_objects:
+            self.new_objects[obj.id] = obj
         else:
             raise ValueError("Object id already present.")
 
@@ -111,15 +138,9 @@ class SquareCatalog:
         response = self.__catalog.batch_upsert_catalog_objects(request)
         check_response(response)
         body = response.body
-        id_map = body.id_mappings
+        id_map = body["id_mappings"]
         for el in id_map:
-            o = self.objects[el.client_object_id]
-            o.id = el.object_id
-            self.object[el]
-    
-
-            
-
-    
-    
-
+            our_id = el["client_object_id"]
+            o = self.new_objects[our_id]
+            o.id = el["object_id"]
+            del self.new_objects[our_id]
