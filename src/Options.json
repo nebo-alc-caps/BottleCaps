@@ -16,7 +16,9 @@
         "8": "Pepsi",
         "9": "Rootbeer",
         "10": "Sparkling Water",
-        "11": "Sprite"
+        "11": "Sprite",
+        "12": "Diet Dr. Pepper",
+        "13": "Diet Mountain Dew"
     },
     "Syrups": {
         "1": "Blackberry",
