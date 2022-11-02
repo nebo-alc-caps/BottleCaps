@@ -1,3 +1,2 @@
 # BottleCaps
-Soda bus woooooooooooooooo
-bro y u do this
+Soda bus this project was abandoned a;sdlklkahsdg
